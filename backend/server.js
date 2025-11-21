@@ -16,6 +16,10 @@ const app = express();
 app.use(express.json()); // Parse JSON bodies
 app.use(cors()); // Enable CORS
 
+app.use(cors({
+    origin: ["https://bank-management-system-blond.vercel.app", "http://localhost:3000"],
+    credentials: true
+}));
 // Basic Route for testing
 app.get('/', (req, res) => {
     res.send('API is running...');

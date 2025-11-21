@@ -4,10 +4,11 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Dashboard from './components/Dashboard';
 import AdminDashboard from './components/AdminDashboard';
+import axios from 'axios';
 // Placeholder components for now
 
 
-
+axios.defaults.baseURL = "https://bank-management-system-mytd.onrender.com";
 const Navbar = () => {
   const navigate = useNavigate();
   const userInfo = localStorage.getItem('userInfo');
