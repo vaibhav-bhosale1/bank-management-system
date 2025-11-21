@@ -1,26 +1,48 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import Login from './components/Login';
+import Register from './components/Register';
 
-// Placeholder components (We will create these next)
-const Login = () => <div className="container"><h2>Login Page</h2></div>;
-const Register = () => <div className="container"><h2>Register Page</h2></div>;
-const Dashboard = () => <div className="container"><h2>User Dashboard</h2></div>;
-const AdminDashboard = () => <div className="container"><h2>Admin Dashboard</h2></div>;
-const Navbar = () => (
-  <nav className="navbar">
-    <div className="container">
-      <span className="nav-logo">BankSystem</span>
-      <div className="nav-links">
-        <a href="/login">Login</a>
-        <a href="/register">Register</a>
-      </div>
-    </div>
-  </nav>
-);
+// Placeholder components for now
+const Dashboard = () => <div className="container"><h2>User Dashboard (Coming Soon)</h2></div>;
+const AdminDashboard = () => <div className="container"><h2>Admin Dashboard (Coming Soon)</h2></div>;
 
-function App() {
+const Navbar = () => {
+  const navigate = useNavigate();
+  const userInfo = localStorage.getItem('userInfo');
+
+  const logoutHandler = () => {
+    localStorage.removeItem('userInfo');
+    navigate('/login');
+  };
+
   return (
-    <Router>
+    <nav className="navbar">
+      <div className="container">
+        <span className="nav-logo" onClick={() => navigate('/')} style={{cursor: 'pointer'}}>BankSystem</span>
+        <div className="nav-links">
+          {userInfo ? (
+             // If logged in, show Logout
+             <span onClick={logoutHandler} style={{ cursor: 'pointer', marginLeft: '1.5rem', color: '#bdc3c7' }}>
+               Logout
+             </span>
+          ) : (
+             // If not logged in, show Login/Register
+             <>
+               <a href="/login">Login</a>
+               <a href="/register">Register</a>
+             </>
+          )}
+        </div>
+      </div>
+    </nav>
+  );
+};
+
+// Wrapper to allow useNavigate in Navbar
+const AppContent = () => {
+  return (
+    <>
       <Navbar />
       <Routes>
         <Route path="/" element={<Login />} />
@@ -29,6 +51,14 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/admin" element={<AdminDashboard />} />
       </Routes>
+    </>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <AppContent />
     </Router>
   );
 }
