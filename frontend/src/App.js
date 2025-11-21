@@ -2,9 +2,9 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import Login from './components/Login';
 import Register from './components/Register';
-
+import Dashboard from './components/Dashboard';
 // Placeholder components for now
-const Dashboard = () => <div className="container"><h2>User Dashboard (Coming Soon)</h2></div>;
+
 const AdminDashboard = () => <div className="container"><h2>Admin Dashboard (Coming Soon)</h2></div>;
 
 const Navbar = () => {
@@ -48,7 +48,7 @@ const AppContent = () => {
         <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard" element={<Dashboard/>} />
         <Route path="/admin" element={<AdminDashboard />} />
       </Routes>
     </>
