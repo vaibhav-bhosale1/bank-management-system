@@ -3,9 +3,10 @@ import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-route
 import Login from './components/Login';
 import Register from './components/Register';
 import Dashboard from './components/Dashboard';
+import AdminDashboard from './components/AdminDashboard';
 // Placeholder components for now
 
-const AdminDashboard = () => <div className="container"><h2>Admin Dashboard (Coming Soon)</h2></div>;
+
 
 const Navbar = () => {
   const navigate = useNavigate();
